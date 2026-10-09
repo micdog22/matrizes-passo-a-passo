@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matrizes Passo a Passo: determinante, inversa e sistemas lineares com frações exatas</title>
+  <meta name="description" content="Determinante por Laplace, Sarrus ou eliminação, inversa por Gauss-Jordan, posto, sistemas lineares com Rouché-Capelli e Cramer, PLU e autovalores, tudo com frações exatas e cada operação mostrada.">
+  <meta name="theme-color" content="#6d28d9">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Matrizes Passo a Passo</h1>
+    <p class="lead">Determinante, inversa, posto, sistemas lineares, PLU e autovalores com frações exatas e cada operação elementar mostrada, do jeito que se faz no caderno.</p>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="t-op">
+      <h2 id="t-op">O que calcular</h2>
+      <div class="ops" role="radiogroup" aria-labelledby="t-op" id="ops">
+        <label><input type="radio" name="op" value="det" checked> Determinante</label>
+        <label><input type="radio" name="op" value="inv"> Inversa</label>
+        <label><input type="radio" name="op" value="rank"> Posto</label>
+        <label><input type="radio" name="op" value="sys"> Sistema linear</label>
+        <label><input type="radio" name="op" value="cramer"> Regra de Cramer</label>
+        <label><input type="radio" name="op" value="plu"> Decomposição PLU</label>
+        <label><input type="radio" name="op" value="eig"> Autovalores</label>
+        <label><input type="radio" name="op" value="arith"> Soma, produto e transposta</label>
+      </div>
+      <div class="op-options" id="op-options">
+        <label class="inline" data-for="det">Método
+          <select id="det-method">
+            <option value="auto">automático (Laplace até 3x3)</option>
+            <option value="laplace">Laplace (cofatores, até 4x4)</option>
+            <option value="sarrus">Sarrus (só 3x3)</option>
+            <option value="elim">eliminação de Gauss</option>
+          </select>
+        </label>
+        <label class="inline" data-for="plu">Troca de linhas
+          <select id="plu-pivot">
+            <option value="first">só quando o pivô é zero</option>
+            <option value="partial">pivoteamento parcial (maior módulo)</option>
+          </select>
+        </label>
+        <label class="inline" data-for="arith">Operação
+          <select id="arith-op">
+            <option value="add">A + B</option>
+            <option value="sub">A - B</option>
+            <option value="mul">A · B</option>
+            <option value="tA">transposta de A</option>
+          </select>
+        </label>
+      </div>
+      <p class="muted small" id="op-help"></p>
+    </section>
+
+    <section class="card" aria-labelledby="t-a">
+      <div class="card-head">
+        <h2 id="t-a">Matriz A</h2>
+        <div class="examples" id="examples"></div>
+      </div>
+      <div id="editor-a"></div>
+    </section>
+
+    <section class="card" aria-labelledby="t-b" id="card-b" hidden>
+      <h2 id="t-b">Matriz B</h2>
+      <div id="editor-b"></div>
+    </section>
+
+    <section class="card" aria-labelledby="t-res">
+      <h2 id="t-res">Resolução</h2>
+      <p class="sr-only" id="result-live" aria-live="polite"></p>
+      <div id="result" class="result"></div>
+    </section>
+
+    <section class="card tips" aria-labelledby="t-tips">
+      <h2 id="t-tips">Como digitar</h2>
+      <ul>
+        <li>Inteiros (<code>-3</code>), frações (<code>3/4</code>) e decimais com vírgula ou ponto (<code>1,5</code> ou <code>0.25</code>). Os decimais viram frações exatas: <code>0,75</code> é <code>3/4</code>.</li>
+        <li>No modo texto, uma linha por linha da matriz, números separados por espaço, tab ou ponto e vírgula. Dá para colar direto do Excel ou do LibreOffice. Numa linha só, <code>1 2; 3 4</code> vira duas linhas, como no MATLAB.</li>
+        <li>Também vale <code>[[1, 2], [3, 4]]</code> (Python), <code>{{1, 2}, {3, 4}}</code> e <code>[1 2; 3 4]</code> (MATLAB).</li>
+        <li>Em sistemas, separe os termos independentes com uma barra: <code>2 1 -1 | 8</code>.</li>
+        <li>As operações elementares aparecem como <code>L2 &lt;- L2 - 3*L1</code> (a linha 2 recebe ela mesma menos 3 vezes a linha 1) e <code>L1 &lt;-&gt; L3</code> (troca as linhas 1 e 3).</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Tudo roda no seu navegador. Código aberto no <a href="https://github.com/micdog22/matrizes-passo-a-passo">GitHub</a> · Licença MIT</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "matrizes-passo-a-passo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Determinante, inversa, posto, sistemas lineares, PLU e autovalores com frações exatas e cada operação elementar mostrada.",
+  "type": "module",
+  "scripts": { "test": "node --test" },
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/micdog22/matrizes-passo-a-passo.git" },
+  "homepage": "https://micdog22.github.io/matrizes-passo-a-passo/"
+}
